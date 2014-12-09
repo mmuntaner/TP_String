@@ -72,10 +72,6 @@ class String
     //                             Public Attributes
     // =======================================================================
 
-
-
-
-
   protected :
 
     // =======================================================================
@@ -99,7 +95,17 @@ class String
 
     // =======================================================================
     //                             Protected Attributes
-    // =======================================================================
+    // =======================================================================    
+    // "data" is a pointer on the tab wich contain each char of the string
+    char* data;
+
+    // "length" is the size of the string in bytes, "capacity" is the actual  
+    // size of the tab in bytes
+    unsigned int length, capacity;
+
+    // "MAX_CAPACITY" is the maximal capacity of a string
+    static const unsigned int MAX_CAPACITY=100;
+
 };
 
 
