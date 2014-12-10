@@ -46,6 +46,7 @@ class String
     //                               Constructors
     // =======================================================================
     String(void);
+    String(const char* s);
 
     // =======================================================================
     //                                Destructor
@@ -57,7 +58,7 @@ class String
     // =======================================================================
 	inline unsigned int length(void) const;
 	inline const unsigned int max_size(void) const;
-    inline unsigned int capacity(void) const;
+        inline unsigned int capacity(void) const;
 
 	
 
