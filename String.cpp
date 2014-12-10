@@ -40,12 +40,12 @@ String::String(void)
 {
   s_capacity=12;
   s_length=6;
-  char* texte = new char[s_capacity];
+  char* s_data = new char[s_capacity];
   for (int i=0; i<=s_length;i+=3)
-		{
-			texte[i]='c';
-			texte[i+1]='o';
-			texte[i+2]='u';
+    {
+			s_data[i]='c';
+			s_data[i+1]='o';
+			s_data[i+2]='u';
     }
 }
 
