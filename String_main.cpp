@@ -42,7 +42,7 @@ int main(int argc, char* argv[])
   printf("Hello World !\n");
   printf("%d \n", test.length());
   printf("%d \n", test.max_size());
-
+  printf("%d \n", test.capacity());
 
   return 0;
 }

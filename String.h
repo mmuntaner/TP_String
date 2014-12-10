@@ -57,6 +57,8 @@ class String
     // =======================================================================
 	inline unsigned int length(void) const;
 	inline const unsigned int max_size(void) const;
+    inline unsigned int capacity(void) const;
+
 	
 
     // =======================================================================
@@ -124,6 +126,20 @@ class String
 	{
 	  return MAX_CAPACITY;
 	}
+
+    // Capacity : Returns the size of the storage space currently allocated 
+    // for the string,expressed in terms of bytes.
+
+    inline unsigned int String::capacity(void) const
+    {
+      if (s_capacity<MAX_CAPACITY) {
+                                     return s_capacity;
+        }
+      else {
+            printf("Vous avez rentré une chaine de caractère trop grande \n");
+            exit(EXIT_FAILURE);
+        }
+    }
 
 // ===========================================================================
 //                              Setters' definitions
