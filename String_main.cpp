@@ -37,6 +37,8 @@
 // ===========================================================================
 int main(int argc, char* argv[])
 {
+
+  String test; 
   printf("Hello World !\n");
 
   return 0;

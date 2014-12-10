@@ -34,8 +34,19 @@
 // ===========================================================================
 //                                  Constructors
 // ===========================================================================
+
+// Constructor used to initialize a string test
 String::String(void)
 {
+  capacity=12;
+	length=4;
+  char* texte = new char[capacity];
+  for (int i=0; i<=length;i+=3)
+		{
+			texte[i]='c';
+			texte[i+1]='o';
+			texte[i+2]='u';
+    }
 }
 
 // ===========================================================================
