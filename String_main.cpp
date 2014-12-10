@@ -40,6 +40,7 @@ int main(int argc, char* argv[])
 
   String test; 
   printf("Hello World !\n");
+  printf("%d \n", test.length());
 
 
   return 0;
