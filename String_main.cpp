@@ -43,6 +43,8 @@ int main(int argc, char* argv[])
   printf("%d \n", test.length());
   printf("%d \n", test.max_size());
   printf("%d \n", test.capacity());
+  printf("%d \n", test.Empty());
+
 
   return 0;
 }
