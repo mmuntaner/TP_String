@@ -72,7 +72,7 @@ class String
     // =======================================================================
     //                              Public Methods
     // =======================================================================
-        bool Empty(void) const;
+        bool empty(void) const;
     // =======================================================================
     //                             Public Attributes
     // =======================================================================
@@ -133,7 +133,8 @@ class String
     inline unsigned int String::capacity(void) const
     {
       if (s_capacity<MAX_CAPACITY) {
-                                     return s_capacity;
+         
+                                     return s_capacity*sizeof(char);
         }
       else {
             printf("Vous avez rentré une chaine de caractère trop grande \n");

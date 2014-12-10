@@ -61,7 +61,7 @@ String::~String(void)
 // ===========================================================================
 //                                 Public Methods
 // ===========================================================================
- bool String::Empty(void) const
+ bool String::empty(void) const
  {
   return (s_length==0);
  }
