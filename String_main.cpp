@@ -41,6 +41,7 @@ int main(int argc, char* argv[])
   String test; 
   printf("Hello World !\n");
   printf("%d \n", test.length());
+  printf("%d \n", test.max_size());
 
 
   return 0;

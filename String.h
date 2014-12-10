@@ -56,6 +56,8 @@ class String
     //                            Accessors: getters
     // =======================================================================
 	inline unsigned int length(void) const;
+	inline const unsigned int max_size(void) const;
+	
 
     // =======================================================================
     //                            Accessors: setters
@@ -116,6 +118,11 @@ class String
 	inline unsigned int String::length(void) const
 	{
 	  return s_length;
+	}
+
+	inline const unsigned int String::max_size(void) const
+	{
+	  return MAX_CAPACITY;
 	}
 
 // ===========================================================================
