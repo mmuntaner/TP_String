@@ -120,12 +120,12 @@ class String
 // ===========================================================================
 	inline unsigned int String::length(void) const
 	{
-	  return s_length;
+	  return s_length*sizeof(char);
 	}
 
 	inline const unsigned int String::max_size(void) const
 	{
-	  return MAX_CAPACITY;
+	  return MAX_CAPACITY*sizeof(char);
 	}
 
     // Capacity : Returns the size of the storage space currently allocated 
