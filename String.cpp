@@ -53,20 +53,12 @@ String::String(const char* s)
 {
 
   //Function that allows to know the length of s.
-  bool fin=false;
   int i=0;
-  while(fin==false)
+  while(s[i]!='\0')
 	{
-		if (s[i]!='\0') 
-		{
-			i++;
-		}
-    else 
-		{
-    	fin=true;
-		}
-	}
-  
+		i++;
+	 }
+   
   //Function that copies the character sequence pointed by s.
   s_data = new char[i];
 	for (int j=0; j<=i; j++)
