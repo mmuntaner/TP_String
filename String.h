@@ -15,7 +15,7 @@
 // ===========================================================================
 #include <cstdio>
 #include <cstdlib>
-
+#include <cstring>
 
 
 // ===========================================================================
@@ -55,10 +55,10 @@ class String
     // =======================================================================
     //                            Accessors: getters
     // =======================================================================
-	inline unsigned int length(void) const;
+	inline size_t length(void) const;
 	inline const unsigned int max_size(void) const;
     inline unsigned int capacity(void) const;
-
+    inline void reserve(unsigned int n=0);
 	
 
     // =======================================================================
@@ -117,7 +117,7 @@ class String
 // ===========================================================================
 //                              Getters' definitions
 // ===========================================================================
-	inline unsigned int String::length(void) const
+	inline size_t String::length(void) const
 	{
 	  return s_length;
 	}
@@ -145,7 +145,13 @@ class String
 // ===========================================================================
 //                              Setters' definitions
 // ===========================================================================
+   inline void String::reserve(unsigned int n)
+   {
+    if (n > s_capacity){
+                       s_capacity = n;
+    }
 
+   }
 // ===========================================================================
 //                             Operators' definitions
 // ===========================================================================
