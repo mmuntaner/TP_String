@@ -76,8 +76,6 @@ String::String(const char* s)
 String::~String(void)
 {
     delete [] s_data;
-    
-    
 }
 
 // ===========================================================================
@@ -88,7 +86,19 @@ String::~String(void)
   return (s_length==0);
  }
 
+char& String::at (unsigned int pos)
+{
+  if (pos<=s_length)
+	{
+		return s_data[pos-1];	
+	}
 
+	else 
+  {
+    printf("La position que vous avez demandée n'existe pas. \n");
+    exit(EXIT_FAILURE);
+  }
+}
 
 // ===========================================================================
 //                                Protected Methods

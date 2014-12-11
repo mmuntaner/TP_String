@@ -75,6 +75,7 @@ class String
     //                              Public Methods
     // =======================================================================
     bool empty(void) const;
+    char& at (unsigned int pos);
         
     // =======================================================================
     //                             Public Attributes
