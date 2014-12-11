@@ -58,7 +58,8 @@ class String
     // =======================================================================
 	inline unsigned int length(void) const;
 	inline const unsigned int max_size(void) const;
-        inline unsigned int capacity(void) const;
+    inline unsigned int capacity(void) const;
+	inline char* c_str(void) const;
 
 	
 
@@ -74,6 +75,7 @@ class String
     //                              Public Methods
     // =======================================================================
         bool empty(void) const;
+        void resize (unsigned int n, char c);
     // =======================================================================
     //                             Public Attributes
     // =======================================================================
@@ -133,15 +135,21 @@ class String
 
     inline unsigned int String::capacity(void) const
     {
-      if (s_capacity<MAX_CAPACITY) {
-         
-                                     return s_capacity*sizeof(char);
-        }
+      if (s_capacity<MAX_CAPACITY) 
+      {
+       return s_capacity*sizeof(char);
+      }
       else {
             printf("Vous avez rentré une chaine de caractère trop grande \n");
             exit(EXIT_FAILURE);
         }
     }
+
+
+	inline char* String::c_str(void) const
+	{
+    return s_data;
+	}
 
 // ===========================================================================
 //                              Setters' definitions

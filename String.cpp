@@ -76,6 +76,7 @@ String::~String(void)
 {
     delete [] s_data;
     
+    
 }
 
 // ===========================================================================
@@ -86,6 +87,27 @@ String::~String(void)
   return (s_length==0);
  }
 
+
+ void String::resize (unsigned int n, char c)
+ {
+	 if (n<s_length)	
+	 {
+		 for (int i=n; i<s_length; i++) 
+     { 
+    	 s_data[i]=NULL;
+     }
+	  	s_length=n;
+	 } 
+
+	 if (n>s_length)
+	 {
+    for (int i=s_length; i<n; i++) 
+     { 
+    	 s_data[i]=c;
+     }
+    s_length=n;
+	 }
+}
 
 // ===========================================================================
 //                                Protected Methods
