@@ -49,6 +49,26 @@ String::String(void)
     }
 }
 
+String::String(const char* s)
+{
+
+  //Function that allows to know the length of s.
+  int i=0;
+  while(s[i]!='\0')
+	{
+		i++;
+	 }
+   
+  //Function that copies the character sequence pointed by s.
+  s_data = new char[i];
+	for (int j=0; j<=i; j++)
+	{
+		s_data[j]=s[j];
+	}
+  
+  s_length=i+1;
+}
+
 // ===========================================================================
 //                                  Destructor
 // ===========================================================================

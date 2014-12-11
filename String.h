@@ -46,6 +46,7 @@ class String
     //                               Constructors
     // =======================================================================
     String(void);
+    String(const char* s);
 
     // =======================================================================
     //                                Destructor
@@ -57,8 +58,10 @@ class String
     // =======================================================================
 	inline size_t length(void) const;
 	inline const unsigned int max_size(void) const;
+
     inline unsigned int capacity(void) const;
     inline void reserve(unsigned int n=0);
+
 	
 
     // =======================================================================
@@ -119,7 +122,7 @@ class String
 // ===========================================================================
 	inline size_t String::length(void) const
 	{
-	  return s_length;
+	  return s_length*sizeof(char);
 	}
 
 	inline const unsigned int String::max_size(void) const
