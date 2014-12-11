@@ -58,19 +58,15 @@ class String
     // =======================================================================
 	inline size_t length(void) const;
 	inline const unsigned int max_size(void) const;
-
-    inline unsigned int capacity(void) const;
+  inline unsigned int capacity(void) const;
 	inline char* c_str(void) const;
 
-  
-
-
-	
 
     // =======================================================================
     //                            Accessors: setters
     // =======================================================================
 		inline void reserve(unsigned int n=0);
+		inline void resize (unsigned int n, char c);
     // =======================================================================
     //                                Operators
     // =======================================================================
@@ -78,8 +74,7 @@ class String
     // =======================================================================
     //                              Public Methods
     // =======================================================================
-        bool empty(void) const;
-        void resize (unsigned int n, char c);
+    bool empty(void) const;
         
     // =======================================================================
     //                             Public Attributes
@@ -164,8 +159,30 @@ class String
     if (n > s_capacity){
                        s_capacity = n;
     }
-
    }
+
+   inline void String::resize (unsigned int n, char c)
+ 	 {
+		 if (n<s_length)	
+		 {
+			 for (int i=n; i<s_length; i++) 
+    	 { 
+    		 s_data[i]=NULL;
+    	 }
+	     s_length=n;
+	 		} 
+
+	 	if (n>s_length)
+    {
+   	 this->reserve(n);
+   	 for (int i=s_length; i<n; i++) 
+     { 
+    	 s_data[i]=c;
+     }
+     s_length=n;
+    
+	 }
+  } 
 // ===========================================================================
 //                             Operators' definitions
 // ===========================================================================

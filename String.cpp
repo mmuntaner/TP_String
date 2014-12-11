@@ -67,6 +67,7 @@ String::String(const char* s)
 	}
   
   s_length=i+1;
+  s_capacity=i+1;
 }
 
 // ===========================================================================
@@ -88,26 +89,6 @@ String::~String(void)
  }
 
 
- void String::resize (unsigned int n, char c)
- {
-	 if (n<s_length)	
-	 {
-		 for (int i=n; i<s_length; i++) 
-     { 
-    	 s_data[i]=NULL;
-     }
-	  	s_length=n;
-	 } 
-
-	 if (n>s_length)
-	 {
-    for (int i=s_length; i<n; i++) 
-     { 
-    	 s_data[i]=c;
-     }
-    s_length=n;
-	 }
-}
 
 // ===========================================================================
 //                                Protected Methods
