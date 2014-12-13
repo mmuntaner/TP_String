@@ -15,7 +15,6 @@
 // ===========================================================================
 #include <cstdio>
 #include <cstdlib>
-#include <cstring>
 
 
 // ===========================================================================
@@ -54,7 +53,9 @@ class String
   // =======================================================================
   //                            Accessors: getters
   // =======================================================================
-  inline size_t length(void) const;
+  // In the specification length return a size_t value but we prefer return
+  // an unsigned int to fit our decision of not including cstring 
+  inline unsigned int length(void) const;
   inline const unsigned int max_size(void) const;
   inline unsigned int capacity(void) const;
   inline const char* c_str(void) const;  
@@ -113,7 +114,7 @@ class String
 // ===========================================================================
 //                              Getters' definitions
 // ===========================================================================
-inline size_t String::length(void) const
+inline unsigned int String::length(void) const
 {
   return s_length*sizeof(char);
 }
