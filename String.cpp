@@ -101,6 +101,15 @@ char& String::at (unsigned int pos)
     }
 }
 
+// Erases the content of the table and set "s_length" to 0
+void String::clear()
+{
+  delete [] s_data;
+  s_capacity=0;
+  s_length=0;
+  s_data=NULL;
+}
+
 // ===========================================================================
 //                                Protected Methods
 // ===========================================================================

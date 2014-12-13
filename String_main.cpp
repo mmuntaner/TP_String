@@ -38,11 +38,12 @@ int main(int argc, char* argv[])
   printf("%d \n", test.capacity());
   printf("%d \n", test.empty());
   printf("%s \n", test.c_str());
-  printf("%d \n", test2.length());
-  printf("%d \n", test2.max_size());
-  printf("%d \n", test2.capacity());
-  printf("%d \n", test2.empty());
-  printf("%s \n", test2.c_str());
+  test.clear();
+  printf("%d \n", test.length());
+  printf("%d \n", test.max_size());
+  printf("%d \n", test.capacity());
+  printf("%d \n", test.empty());
+  printf("%s \n", test.c_str());
 
   return 0;
 }
