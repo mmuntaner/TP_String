@@ -56,7 +56,7 @@ class String
   inline size_t length(void) const;
   inline const unsigned int max_size(void) const;
   inline unsigned int capacity(void) const;
-  inline char* c_str(void) const;  
+  inline const char* c_str(void) const;  
   
   // =======================================================================
   //                            Accessors: setters
@@ -126,7 +126,8 @@ inline size_t String::length(void) const
 inline const unsigned int String::max_size(void) const
 {
   return MAX_CAPACITY;
-	}
+}
+
 // Capacity : Returns the size of the storage space currently allocated 
 // for the string,expressed in terms of bytes.
 inline unsigned int String::capacity(void) const
@@ -139,6 +140,20 @@ inline unsigned int String::capacity(void) const
     printf("The string is too long! \n");
     exit(EXIT_FAILURE);
   }
+}
+
+// "c_str" return a pointer on a c string version of s_data 
+// In the main, user have to delete the tab pointed by cstr
+inline const char* String::c_str(void) const
+{
+  unsigned int i;
+  char* cstr = new char [1+s_length];
+  for(i=0 ; i<s_length ; i++)
+    {
+      cstr[i] = s_data[i];
+    }
+  cstr[s_length] = '\0';
+  return cstr;
 }
 
 // ===========================================================================
