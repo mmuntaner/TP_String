@@ -66,7 +66,7 @@ class String
     //                            Accessors: setters
     // =======================================================================
 		inline void reserve(unsigned int n=0);
-		inline void resize (unsigned int n, char c);
+		inline void resize (unsigned int n);
     // =======================================================================
     //                                Operators
     // =======================================================================
@@ -164,7 +164,7 @@ class String
    }
 		
 	 // Resizes the string to a length of n characters.
-   inline void String::resize (unsigned int n, char c)
+   inline void String::resize (unsigned int n)
  	 {
      
 		 if (n<s_length)	
@@ -189,11 +189,11 @@ class String
       }
       for (int i=s_length; i<n; i++) 
       { 
-    	  news_data[i]=c;
+    	  news_data[i]=' ';
       }
       delete [] s_data;
       s_data=news_data; 
-      s_length=n;
+   
     
 	 }
   } 
