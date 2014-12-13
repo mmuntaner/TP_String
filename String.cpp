@@ -1,6 +1,6 @@
 //****************************************************************************
 //
-//
+//                                  String.cpp
 //
 //****************************************************************************
 
@@ -20,7 +20,6 @@
 
 
 
-
 //############################################################################
 //                                                                           #
 //                                 Class String                              #
@@ -37,20 +36,19 @@
 
 String::String(const char* s)
 {
-
   //Function that allows to know the length of s.
   int i=0;
   while(s[i]!='\0')
-	{
-		i++;
-	 }
-   
+    {
+      i++;
+    }
+  
   //Function that copies the character sequence pointed by s.
   s_data = new char[i];
-	for (int j=0; j<=i; j++)
-	{
-		s_data[j]=s[j];
-	}
+  for (int j=0; j<=i; j++)
+    {
+      s_data[j]=s[j];
+    }
   
   s_length=i;
   s_capacity=i;
@@ -61,37 +59,38 @@ String::String(const char* s)
 // ===========================================================================
 String::~String(void)
 {
-    delete [] s_data;
+  delete [] s_data;
 }
 
 // ===========================================================================
 //                                 Public Methods
 // ===========================================================================
 
- //Returns whether the string is empty (i.e. whether its length is 0).
- bool String::empty(void) const
- {
+//Returns whether the string is empty (i.e. whether its length is 0).
+bool String::empty(void) const
+{
   return (s_length==0);
- }
+}
+
 //Returns a reference to the character at position pos in the string.
 char& String::at (unsigned int pos)
 {
   if (pos<=s_length)
-	{
-		return s_data[pos-1];	
-	}
-
-	else 
-  {
-    printf("La position que vous avez demandée n'existe pas. \n");
-    exit(EXIT_FAILURE);
-  }
+    {
+      return s_data[pos-1];	
+    }
+  
+  else 
+    {
+      printf("Position asked doesn't exist \n");
+      exit(EXIT_FAILURE);
+    }
 }
 
 // ===========================================================================
 //                                Protected Methods
 // ===========================================================================
- 
+
 
 
 // ===========================================================================
