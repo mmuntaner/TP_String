@@ -35,20 +35,6 @@
 //                                  Constructors
 // ===========================================================================
 
-// Constructor used to initialize a string test
-String::String(void)
-{
-  s_capacity=12;
-  s_length=6;
-  char* s_data = new char[s_capacity];
-  for (int i=0; i<=s_length;i+=3)
-    {
-			s_data[i]='c';
-			s_data[i+1]='o';
-			s_data[i+2]='u';
-    }
-}
-
 String::String(const char* s)
 {
 

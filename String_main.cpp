@@ -38,7 +38,7 @@
 int main(int argc, char* argv[])
 {
 
-  String test; 
+  String test("Phrase de test!"); 
   printf("Hello World !\n");
   printf("%d \n", test.length());
   printf("%d \n", test.max_size());
