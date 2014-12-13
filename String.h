@@ -155,32 +155,45 @@ class String
 // ===========================================================================
 //                              Setters' definitions
 // ===========================================================================
+   // Requests that the string capacity be adapted to a planned change in size to a length of up to n characters.
    inline void String::reserve(unsigned int n)
    {
     if (n > s_capacity){
                        s_capacity = n;
     }
    }
-
+		
+	 // Resizes the string to a length of n characters.
    inline void String::resize (unsigned int n, char c)
  	 {
+     
 		 if (n<s_length)	
 		 {
-			 for (int i=n; i<s_length; i++) 
+		   char* news_data = new char[n];     	
+			 for (int i=0; i<n; i++) 
     	 { 
-    		 s_data[i]=NULL;
+    		 news_data[i]= s_data[i];
     	 }
+			 delete [] s_data;
+       s_data=news_data;
 	     s_length=n;
 	 		} 
 
 	 	if (n>s_length)
     {
-   	 this->reserve(n);
-   	 for (int i=s_length; i<n; i++) 
-     { 
-    	 s_data[i]=c;
-     }
-     s_length=n;
+ 		  this->reserve(n);
+		  char* news_data = new char[n]; 
+   	  for (int i=0; i<s_length; i++) 
+      { 
+    	  news_data[i]=s_data[i];
+      }
+      for (int i=s_length; i<n; i++) 
+      { 
+    	  news_data[i]=c;
+      }
+      delete [] s_data;
+      s_data=news_data; 
+      s_length=n;
     
 	 }
   } 

@@ -66,8 +66,8 @@ String::String(const char* s)
 		s_data[j]=s[j];
 	}
   
-  s_length=i+1;
-  s_capacity=i+1;
+  s_length=i;
+  s_capacity=i;
 }
 
 // ===========================================================================
@@ -81,11 +81,13 @@ String::~String(void)
 // ===========================================================================
 //                                 Public Methods
 // ===========================================================================
+
+ //Returns whether the string is empty (i.e. whether its length is 0).
  bool String::empty(void) const
  {
   return (s_length==0);
  }
-
+//Returns a reference to the character at position pos in the string.
 char& String::at (unsigned int pos)
 {
   if (pos<=s_length)
