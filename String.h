@@ -70,7 +70,7 @@ class String
   // =======================================================================
   //                                Operators
   // =======================================================================
-  
+   inline char& operator[](unsigned int pos);
   // =======================================================================
   //                              Public Methods
   // =======================================================================
@@ -206,7 +206,21 @@ inline void String::resize (unsigned int n)
 // ===========================================================================
 //                             Operators' definitions
 // ===========================================================================
+//Returns a reference to the character at position pos in the string.
+ char & String::operator[]( unsigned int pos )
+{
+//if the position asked is outside the lenght of the string
+if (pos<0 || pos>s_length) 
+{
+printf("out of range\n");
+exit(EXIT_FAILURE);
+}
+else
+{ 
+  return this->s_data[pos-1];
+}
 
+}
 // ===========================================================================
 //                          Inline functions' definition
 // ===========================================================================
