@@ -56,6 +56,7 @@ class String
   // In the specification length return a size_t value but we prefer return
   // an unsigned int to fit our decision of not including cstring 
   inline unsigned int length(void) const;
+  inline unsigned int size(void) const;
   inline const unsigned int max_size(void) const;
   inline unsigned int capacity(void) const;
   inline const char* c_str(void) const;  
@@ -118,6 +119,12 @@ class String
 inline unsigned int String::length(void) const
 {
   return s_length*sizeof(char);
+}
+
+// "size()" is exactly the same as "length()"
+inline unsigned int String::size(void) const
+{
+  return length();
 }
 
 inline const unsigned int String::max_size(void) const

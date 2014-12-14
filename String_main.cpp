@@ -34,12 +34,14 @@ int main(int argc, char* argv[])
   String test("Test string!");
   String test2(test);
   printf("%d \n", test.length());
+  printf("%d \n", test.size());
   printf("%d \n", test.max_size());
   printf("%d \n", test.capacity());
   printf("%d \n", test.empty());
   printf("%s \n", test.c_str());
   test.clear();
   printf("%d \n", test.length());
+  printf("%d \n", test.size());
   printf("%d \n", test.max_size());
   printf("%d \n", test.capacity());
   printf("%d \n", test.empty());
