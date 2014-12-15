@@ -138,14 +138,9 @@ inline const unsigned int String::max_size(void) const
 // for the string,expressed in terms of bytes.
 inline unsigned int String::capacity(void) const
 {
-  if (s_capacity<MAX_CAPACITY) 
-    {
+  
       return s_capacity*sizeof(char);
-    }
-  else {
-    printf("The string is too long! \n");
-    exit(EXIT_FAILURE);
-  }
+  
 }
 
 // "c_str" return a pointer on a c string version of s_data 
@@ -167,8 +162,20 @@ inline const char* String::c_str(void) const
 // ===========================================================================
 // Requests that the string capacity be adapted to a planned change in size to a length of up to n characters.
 inline void String::reserve(unsigned int n)
+{ if(n>MAX_CAPACITY)
 {
-  if (n > s_capacity){
+printf("Your string is too long, not enough capacity !\n", MAX_CAPACITY);
+exit(EXIT_FAILURE);
+}
+ else if (n > s_capacity)
+{
+  char* news_data = new char [n];
+  for(int i=0;i<s_capacity;i++)
+    {
+     news_data[i]=s_data[i];
+    }
+     delete [] s_data;
+     s_data=news_data;
     s_capacity = n;
   }
 }
