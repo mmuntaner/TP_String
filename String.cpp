@@ -96,8 +96,8 @@ char& String::at (unsigned int pos)
   
   else 
     {
-      printf("Position asked doesn't exist \n");
-      exit(EXIT_FAILURE);
+     printf("out of range\n");
+     exit(EXIT_FAILURE);
     }
 }
 
