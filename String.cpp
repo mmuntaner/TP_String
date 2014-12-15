@@ -40,9 +40,9 @@ String::String(const char* s)
   int i=0;
   while(s[i]!='\0')
     {
-      i++;
+       i++;
     }
-  
+
   // Function that copies the character sequence pointed by s.
   s_data = new char[i];
   for (int j=0; j<=i; j++)
@@ -51,7 +51,7 @@ String::String(const char* s)
     }
   
   s_length=i;
-  s_capacity=i;
+  s_capacity=i+1;
 }
 
 String::String (const String& str)

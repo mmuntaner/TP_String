@@ -72,6 +72,7 @@ class String
   // =======================================================================
    inline char& operator[](unsigned int pos);
    inline String& operator=(char c);
+   inline String operator+ (const char* lhs);
   // =======================================================================
   //                              Public Methods
   // =======================================================================
@@ -232,6 +233,33 @@ else
   char* s_data = new char[1];
   s_data[0]=c;
   return *this; 
+ }
+
+ inline String String::operator+ (const char* lhs)
+ {
+   unsigned int i=0;
+   while(lhs[i]!='\0')
+   {
+      i++;
+   }
+   char* data = new char[i+s_length]; 
+   unsigned int j;
+   for (j=0; j<s_length;j++)
+     {
+       data [j]=s_data[j];
+     }
+   
+    for (j=s_length; j<(i+s_length);j++)
+     {
+       data [j]=lhs[j-s_length];
+     }
+   data[i+s_length]='\0';
+   printf(" \n");
+   String string_ret(data);
+   printf("%d \n", string_ret.length());
+   delete []data;
+   return string_ret;
+       
  }
 // ===========================================================================
 //                          Inline functions' definition
