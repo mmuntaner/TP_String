@@ -71,6 +71,7 @@ class String
   //                                Operators
   // =======================================================================
    inline char& operator[](unsigned int pos);
+   inline String& operator=(char c);
   // =======================================================================
   //                              Public Methods
   // =======================================================================
@@ -207,7 +208,7 @@ inline void String::resize (unsigned int n)
 //                             Operators' definitions
 // ===========================================================================
 //Returns a reference to the character at position pos in the string.
- char & String::operator[]( unsigned int pos )
+inline char & String::operator[]( unsigned int pos )
 {
 //if the position asked is outside the lenght of the string
 if (pos<0 || pos>s_length) 
@@ -221,6 +222,17 @@ else
 }
 
 }
+
+//Assigns a new value to the string, replacing its current contents.
+ inline String& String::operator=(char c)
+ {
+  s_length=1;
+  s_capacity=1;
+  delete [] s_data;
+  char* s_data = new char[1];
+  s_data[0]=c;
+  return *this; 
+ }
 // ===========================================================================
 //                          Inline functions' definition
 // ===========================================================================
