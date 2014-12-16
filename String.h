@@ -176,13 +176,14 @@ exit(EXIT_FAILURE);
     }
      delete [] s_data;
      s_data=news_data;
-    s_capacity = n;
+     s_capacity = n+1;
   }
 }
 		
 // Resizes the string to a length of n characters.
 inline void String::resize (unsigned int n)
 {   
+  this->reserve(n);
   if (n<s_length)	
     {
       char* news_data = new char[n];     	
@@ -197,7 +198,7 @@ inline void String::resize (unsigned int n)
   
   if (n>s_length)
     {
-      this->reserve(n);
+     
       char* news_data = new char[n]; 
       for (int i=0; i<s_length; i++) 
 	{ 
@@ -209,7 +210,10 @@ inline void String::resize (unsigned int n)
 	}
       delete [] s_data;
       s_data=news_data;
+      s_length=n;
+       printf("On veut %d", s_length);
     }
+
 } 
 
 // ===========================================================================
@@ -249,23 +253,21 @@ else
    {
       i++;
    }
-   char* data = new char[i+s_length]; 
-   unsigned int j;
-   for (j=0; j<s_length;j++)
-     {
-       data [j]=s_data[j];
-     }
+   unsigned int n = i+s_length;
+   unsigned int old_length = s_length;
+
+   this->resize(n);
    
-    for (j=s_length; j<(i+s_length);j++)
-     {
-       data [j]=lhs[j-s_length];
-     }
-   data[i+s_length]='\0';
+   unsigned int j;
+   for (j=old_length; j<n;j++)
+   {
+     s_data [j]=lhs[j-old_length];
+     printf("%c \n", lhs[j-old_length]);
+   }
+   s_data[n]='\0';
    printf(" \n");
-   String string_ret(data);
-   printf("%d \n", string_ret.length());
-   delete []data;
-   return string_ret;
+   printf("%d \n", this->length());
+   return *this;
        
  }
 // ===========================================================================
