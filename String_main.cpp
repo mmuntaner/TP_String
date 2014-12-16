@@ -35,9 +35,21 @@ void Test_class_string(String S);
 
 int main(int argc, char* argv[])
 {
-  String test("");
-
-Test_class_string(test);
+  String test("Test string");
+  String test2("");
+  printf("%d \n", test.length());
+  printf("%d \n", test.size());
+  printf("%d \n", test.max_size());
+  printf("%d \n", test.capacity());
+  printf("%d \n", test.empty());
+  printf("%s \n", test.c_str());
+  test2 = '!' + test + '!';
+  printf("%d \n", test2.length());
+  printf("%d \n", test2.size());
+  printf("%d \n", test2.max_size());
+  printf("%d \n", test2.capacity());
+  printf("%d \n", test2.empty());
+  printf("%s \n", test2.c_str());
   return 0;
 }
 
