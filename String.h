@@ -129,7 +129,7 @@ inline unsigned int String::length(void) const
 // "size()" is exactly the same as "length()"
 inline unsigned int String::size(void) const
 {
-  return length();
+  return s_length*sizeof(char);
 }
 
 inline const unsigned int String::max_size(void) const
@@ -167,7 +167,7 @@ inline const char* String::c_str(void) const
 inline void String::reserve(unsigned int n)
 { if(n>MAX_CAPACITY)
 {
-printf("Your string is too long, not enough capacity !\n", MAX_CAPACITY);
+printf("Your string is too long, not enough capacity !\n");
 exit(EXIT_FAILURE);
 }
  else if (n > s_capacity)
@@ -214,7 +214,6 @@ inline void String::resize (unsigned int n)
       delete [] s_data;
       s_data=news_data;
       s_length=n;
-       printf("On veut %d", s_length);
     }
 
 } 
@@ -256,43 +255,41 @@ else
    {
       i++;
    }
-   unsigned int n = i+s_length;
-   unsigned int old_length = s_length;
+   unsigned int m = i+s_length;
+   unsigned int n = s_length;
 
-   this->resize(n);
+   this->resize(m);
    
    unsigned int j;
-   for (j=old_length; j<n;j++)
+   for (j=n; j<m;j++)
    {
-     s_data [j]=lhs[j-old_length];
-     printf("%c \n", lhs[j-old_length]);
+     s_data [j]=lhs[j-n];
    }
-   s_data[n]='\0';
-   printf(" \n");
-   printf("%d \n", this->length());
+   s_data[m]='\0';
    return *this;
        
  }
 //Assigns a new value ("foo") to the string, replacing its current contents.
 String& String::operator=( const char* s )
-{int j=0;
+{
+  int j=0;
   while(s[j]!='\0')
     {
       j++;
     }
-s_length = j;
-if (s_data)
-{
-delete[] s_data;
-}
-s_data = new char[ s_length + 1 ];
-for( int i = 0; i < s_length; i++ )
-{
-s_data[i] = s[i];
-}
+  s_length = j;
+  if (s_data)
+  {
+    delete[] s_data;
+  }
+  s_data = new char[ s_length + 1 ];
+  for( int i = 0; i < s_length; i++ )
+  {
+  s_data[i] = s[i];
+  }
 
-s_data[s_length] = '\0';
-return *this;
+  s_data[s_length] = '\0';
+  return *this;
 }
 
 
@@ -300,27 +297,19 @@ return *this;
 //being the concatenation of the characters in lhs followed by those of rhs.
 String String::operator+(const String& rhs)
 {
-  int n = this->s_length;
-   printf("%d \n", n);
-   printf("%d \n", rhs.s_length );
+   unsigned int n = this->s_length;
+   unsigned int m = n + rhs.s_length;
 
-char* data = new char[rhs.s_length+n]; 
+
+   this->resize(m);
+
    unsigned int j;
-   for (j=0; j<n;j++)
+   for (j=n; j<(m);j++)
      {
-       data[j]=s_data[j];
+       s_data [j]=rhs.s_data[j-n];
      }
-   
-    for (j=n; j<(rhs.s_length+n);j++)
-     {
-       data [j]=rhs.s_data[j-n];
-     }
-   data[rhs.s_length+n]='\0';
-   printf(" \n");
-   String string_(data);
-   printf("%d \n", string_.length());
-   delete []data;
-   return string_;
+   s_data[m]='\0';
+   return *this;
 }
 
 
