@@ -72,7 +72,10 @@ class String
   // =======================================================================
    inline char& operator[](unsigned int pos);
    inline String& operator=(char c);
-   inline String operator+ (const char* lhs);
+   inline String operator+(const char* lhs);
+   inline String& operator=( const char* s);
+   inline String operator+( const String& rhs);
+  
   // =======================================================================
   //                              Public Methods
   // =======================================================================
@@ -235,7 +238,7 @@ else
 
 }
 
-//Assigns a new value to the string, replacing its current contents.
+//Assigns a new value ('c') to the string, replacing its current contents.
  inline String& String::operator=(char c)
  {
   s_length=1;
@@ -270,6 +273,60 @@ else
    return *this;
        
  }
+//Assigns a new value ("foo") to the string, replacing its current contents.
+String& String::operator=( const char* s )
+{int j=0;
+  while(s[j]!='\0')
+    {
+      j++;
+    }
+s_length = j;
+if (s_data)
+{
+delete[] s_data;
+}
+s_data = new char[ s_length + 1 ];
+for( int i = 0; i < s_length; i++ )
+{
+s_data[i] = s[i];
+}
+
+s_data[s_length] = '\0';
+return *this;
+}
+
+
+//Returns a newly constructed string object with its value 
+//being the concatenation of the characters in lhs followed by those of rhs.
+String String::operator+(const String& rhs)
+{
+  int n = this->s_length;
+   printf("%d \n", n);
+   printf("%d \n", rhs.s_length );
+
+char* data = new char[rhs.s_length+n]; 
+   unsigned int j;
+   for (j=0; j<n;j++)
+     {
+       data[j]=s_data[j];
+     }
+   
+    for (j=n; j<(rhs.s_length+n);j++)
+     {
+       data [j]=rhs.s_data[j-n];
+     }
+   data[rhs.s_length+n]='\0';
+   printf(" \n");
+   String string_(data);
+   printf("%d \n", string_.length());
+   delete []data;
+   return string_;
+}
+
+
+
+
+
 // ===========================================================================
 //                          Inline functions' definition
 // ===========================================================================
