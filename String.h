@@ -130,7 +130,7 @@ inline unsigned int String::length(void) const
 // "size()" is exactly the same as "length()"
 inline unsigned int String::size(void) const
 {
-  return s_length*sizeof(char);
+  return length();
 }
 
 inline const unsigned int String::max_size(void) const
