@@ -73,6 +73,7 @@ class String
    inline char& operator[](unsigned int pos);
    inline String& operator=(char c);
    inline String operator+ (const char* lhs);
+   inline String& operator=( const char* s);
   // =======================================================================
   //                              Public Methods
   // =======================================================================
@@ -231,7 +232,7 @@ else
 
 }
 
-//Assigns a new value to the string, replacing its current contents.
+//Assigns a new value ('c') to the string, replacing its current contents.
  inline String& String::operator=(char c)
  {
   s_length=1;
@@ -268,6 +269,29 @@ else
    return string_ret;
        
  }
+//Assigns a new value ("foo") to the string, replacing its current contents.
+String& String::operator=( const char* s )
+{int j=0;
+  while(s[j]!='\0')
+    {
+      j++;
+    }
+s_length = j;
+if (s_data)
+{
+delete[] s_data;
+}
+s_data = new char[ s_length + 1 ];
+for( int i = 0; i < s_length; i++ )
+{
+s_data[i] = s[i];
+}
+
+s_data[s_length] = '\0';
+return *this;
+}
+
+
 // ===========================================================================
 //                          Inline functions' definition
 // ===========================================================================
