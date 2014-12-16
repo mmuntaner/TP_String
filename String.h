@@ -248,6 +248,9 @@ else
   return *this; 
  }
 
+
+//Returns a newly constructed string object with its value 
+//being the concatenation of the characters 
  inline String String::operator+ (const char* lhs)
  {
    unsigned int i=0;
