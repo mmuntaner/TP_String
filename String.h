@@ -72,8 +72,10 @@ class String
   // =======================================================================
    inline char& operator[](unsigned int pos);
    inline String& operator=(char c);
-   inline String operator+ (const char* lhs);
+   inline String operator+(const char* lhs);
    inline String& operator=( const char* s);
+   inline String operator+( const String& rhs);
+  
   // =======================================================================
   //                              Public Methods
   // =======================================================================
@@ -290,6 +292,37 @@ s_data[i] = s[i];
 s_data[s_length] = '\0';
 return *this;
 }
+
+
+//Returns a newly constructed string object with its value 
+//being the concatenation of the characters in lhs followed by those of rhs.
+String String::operator+(const String& rhs)
+{
+  int n = this->s_length;
+   printf("%d \n", n);
+   printf("%d \n", rhs.s_length );
+
+char* data = new char[rhs.s_length+n]; 
+   unsigned int j;
+   for (j=0; j<n;j++)
+     {
+       data[j]=s_data[j];
+     }
+   
+    for (j=n; j<(rhs.s_length+n);j++)
+     {
+       data [j]=rhs.s_data[j-n];
+     }
+   data[rhs.s_length+n]='\0';
+   printf(" \n");
+   String string_(data);
+   printf("%d \n", string_.length());
+   delete []data;
+   return string_;
+}
+
+
+
 
 
 // ===========================================================================
