@@ -75,7 +75,8 @@ class String
    inline String operator+(const char* lhs);
    inline String& operator=( const char* s);
    inline String operator+( const String& rhs);
-  
+   inline String& operator= (const String& str);
+
   // =======================================================================
   //                              Public Methods
   // =======================================================================
@@ -315,7 +316,37 @@ String String::operator+(const String& rhs)
    return *this;
 }
 
-
+// This operator compare if the String are the same, if they arent, it
+// copy str
+inline String& String::operator= (const String& str)
+{
+  int cmp=0;
+  int i;
+  if (s_length==str.s_length)
+    {
+      for(i=0;i<s_length;i++)
+	{
+	  if (s_data[i]==str.s_data[i])
+	    {
+	      cmp=1;
+	    }
+	}
+    }
+  if(cmp)
+    {
+      return *this;
+    }
+  delete [] s_data;
+  s_length=str.s_length;
+  s_capacity=str.s_capacity;
+  s_data=new char [s_capacity];
+  // This loop is similar to memcpy
+  for(i=0;i<s_length;i++)
+    {
+      s_data[i]=str.s_data[i];
+    }
+  return *this;
+}
 
 
 
