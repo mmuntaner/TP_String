@@ -259,22 +259,23 @@ else
    unsigned int i=0;
    while(lhs[i]!='\0')
    {
-      i++;
+   i++;
    }
-   unsigned int m = i+s_length;
-   unsigned int n = s_length;
-
-   this->resize(m);
    
-   unsigned int j;
-   for (j=n; j<m;j++)
-   {
-     s_data [j]=lhs[j-n];
-   }
-   s_data[m]='\0';
-   return *this;
+unsigned int m = i+s_length;
+unsigned int n = s_length;
+String newstring(*this);
+newstring.resize(m);
+unsigned int j;
+for (j=n; j<m;j++)
+{
+newstring.s_data[j]=lhs[j-n];
+}
+newstring.s_data[m]='\0';
+return newstring;
+}
        
- }
+ 
 //Assigns a new value ("foo") to the string, replacing its current contents.
 String& String::operator=( const char* s )
 {
@@ -303,19 +304,18 @@ String& String::operator=( const char* s )
 //being the concatenation of the characters in lhs followed by those of rhs.
 String String::operator+(const String& rhs)
 {
-   unsigned int n = this->s_length;
-   unsigned int m = n + rhs.s_length;
-
-
-   this->resize(m);
-
-   unsigned int j;
-   for (j=n; j<(m);j++)
-     {
-       s_data [j]=rhs.s_data[j-n];
-     }
-   s_data[m]='\0';
-   return *this;
+  unsigned int n = this->s_length;
+unsigned int m = n + rhs.s_length;
+String newstring(*this);
+newstring.resize(m);
+unsigned int j;
+for (j=n; j<(m);j++)
+{
+newstring.s_data[j]=rhs.s_data[j-n];
+}
+newstring.s_data[m]='\0';
+return newstring;
+  
 }
 
 // This operator compare if the String are the same, if they arent, it
