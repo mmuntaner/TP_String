@@ -36,12 +36,56 @@ void Test_class_string(String S);
 int main(int argc, char* argv[])
 {
 
-  String test("Test for the string ");
+String test("Test for the string ");
+String test2("Stringtest2");
+String test3("Stringtest3");
 
+//Definition of the string to test
 Test_class_string(test);
-printf("Testing the method clear\n");
+
+
+printf("\nTesting operators\n");
+
+//Testing the operator =(String)
+test=test2;
+printf("New string : %s \n", test.c_str());
+
+//Testing the operator =(char c)
+test='c';
+printf("New string : %s \n", test.c_str());
+
+//Testing the operator =(char *)
+test="newchar*";
+printf("New string : %s \n", test.c_str());
+
+//Testing the operator +(String)
+test=test2+test3;
+printf("New string : %s \n", test.c_str());
+
+//Testing the operator +(String)
+String test4=test3+test2;
+printf("New string : %s \n", test4.c_str());
+
+//Testing the operator +(char c)
+test=test2+'c';
+printf("New string : %s \n", test.c_str());
+
+//Testing the operator +(char c)
+test='c'+test2;
+printf("New string : %s \n", test.c_str());
+
+//Testing the operator +(char *)
+test=test2+"newchar*";
+printf("New string : %s \n", test.c_str());
+
+
+
+
+printf("\nTesting the method clear\n");
 test.clear();
+//verification that the string is clear
 Test_class_string(test);
+
 
   return 0;
 }
