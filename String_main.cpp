@@ -63,8 +63,8 @@ test=test2+test3;
 printf("New string : %s \n", test.c_str());
 
 //Testing the operator +(String)
-String test4=test3+test2;
-printf("New string : %s \n", test4.c_str());
+test=test3+test2;
+printf("New string : %s \n", test.c_str());
 
 //Testing the operator +(char c)
 test=test2+'c';
@@ -75,8 +75,12 @@ test='c'+test2;
 printf("New string : %s \n", test.c_str());
 
 //Testing the operator +(char *)
-test=test2+"newchar*";
+test="newchar*"+test2;
 printf("New string : %s \n", test.c_str());
+
+//Testing the operator +(char *)
+ test=test2+"newchar*";
+ printf("New string : %s \n", test.c_str());
 
 
 
@@ -98,13 +102,13 @@ Test_class_string(test);
 void Test_class_string(String S)
 {
    printf("String to test : %s \n", S.c_str());
-  printf("lenght of the string : %d \n", S.length());
-  printf("size of the string :%d \n", S.size());
-  printf("max_capacity of the string : %d \n", S.max_size());
-  printf("capacity of the string :%d \n", S.capacity());
-  printf("does the string is empty ? (y=1, n=0) :%d \n", S.empty());
-  printf("character at the position 5 in the string :%c \n", S.at(5));
-  printf("character at the position 7 in the string using operator []:%c \n", S[10]);
+  printf("Lenght of the string : %d \n", S.length());
+  printf("Size of the string :%d \n", S.size());
+  printf("Max_capacity of the string : %d \n", S.max_size());
+  printf("Capacity of the string :%d \n", S.capacity());
+  printf("Does the string is empty ? (y=1, n=0) :%d \n", S.empty());
+  printf("Character at the position 5 in the string :%c \n", S.at(5));
+  printf("Character at the position 7 in the string using operator []:%c \n", S[10]);
  
 }
 

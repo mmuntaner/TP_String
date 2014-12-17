@@ -72,12 +72,14 @@ class String
   // =======================================================================
    inline char& operator[](unsigned int pos);
    inline String& operator=(char c);
-   inline String operator+(const char* lhs);
    inline String& operator=( const char* s);
-   inline String operator+( const String& rhs);
    inline String& operator= (const String& str);
+   friend inline String operator+ (const String& lhs, const String& rhs);
    friend inline String operator+ (const String& lhs, char rhs);
    friend inline String operator+ (char lhs, const String& rhs);
+   friend inline String operator+ (const char* lhs,const String& rhs);
+   friend inline String operator+ (const String& lhs, const char* rhs);
+  
 
   // =======================================================================
   //                              Public Methods
@@ -252,28 +254,38 @@ else
  }
 
 
-//Returns a newly constructed string object with its value 
-//being the concatenation of the characters 
- inline String String::operator+ (const char* lhs)
+   inline String operator+ (const String& lhs,const char* rhs )
  {
-   unsigned int i=0;
-   while(lhs[i]!='\0')
+    unsigned int i=0;
+   while(rhs[i]!='\0')
    {
    i++;
    }
    
-unsigned int m = i+s_length;
-unsigned int n = s_length;
-String newstring(*this);
-newstring.resize(m);
-unsigned int j;
-for (j=n; j<m;j++)
+   unsigned int m = i+lhs.s_length;
+   unsigned int n = lhs.s_length;
+   String newstring(lhs);
+   newstring.resize(m);
+   unsigned int j;
+   for (j=n; j<m;j++)
+     {
+       newstring.s_data[j]=rhs[j-n];
+     }
+   newstring.s_data[m]='\0';
+   return newstring;
+ }
+
+
+//Returns a newly constructed string object with its value 
+//being the concatenation of the characters at the right of the operator
+inline String operator+ (const char* lhs,const String& rhs)
 {
-newstring.s_data[j]=lhs[j-n];
+  String newstring(lhs);
+  newstring=newstring+rhs;
+  return newstring;
+  
 }
-newstring.s_data[m]='\0';
-return newstring;
-}
+
        
  
 //Assigns a new value ("foo") to the string, replacing its current contents.
@@ -302,19 +314,19 @@ String& String::operator=( const char* s )
 
 //Returns a newly constructed string object with its value 
 //being the concatenation of the characters in lhs followed by those of rhs.
-String String::operator+(const String& rhs)
+inline String operator+ (const String& lhs, const String& rhs)
 {
-  unsigned int n = this->s_length;
-unsigned int m = n + rhs.s_length;
-String newstring(*this);
-newstring.resize(m);
-unsigned int j;
-for (j=n; j<(m);j++)
-{
-newstring.s_data[j]=rhs.s_data[j-n];
-}
-newstring.s_data[m]='\0';
-return newstring;
+  unsigned int n = lhs.s_length;
+  unsigned int m = n + rhs.s_length;
+  String newstring(lhs);
+  newstring.resize(m);
+  unsigned int j;
+  for (j=n; j<(m);j++)
+    {
+      newstring.s_data[j]=rhs.s_data[j-n];
+    }
+  newstring.s_data[m]='\0';
+  return newstring;
   
 }
 
@@ -382,6 +394,13 @@ inline String operator+ (char lhs, const String& rhs)
   String result(cstr);
   return result;
 }
+
+
+
+
+
+
+
 
 // ===========================================================================
 //                          Inline functions' definition
