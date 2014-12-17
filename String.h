@@ -184,7 +184,7 @@ exit(EXIT_FAILURE);
     }
      delete [] s_data;
      s_data=news_data;
-     s_capacity = n+1;
+     s_capacity = n;
   }
 }
 		

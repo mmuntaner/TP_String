@@ -51,7 +51,7 @@ String::String(const char* s)
     }
   
   s_length=i;
-  s_capacity=i+1;
+  s_capacity=i;
 }
 
 String::String (const String& str)
