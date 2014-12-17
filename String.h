@@ -256,23 +256,32 @@ else
 
    inline String operator+ (const String& lhs,const char* rhs )
  {
-    unsigned int i=0;
-   while(rhs[i]!='\0')
-   {
-   i++;
-   }
-   
-   unsigned int m = i+lhs.s_length;
-   unsigned int n = lhs.s_length;
-   String newstring(lhs);
-   newstring.resize(m);
-   unsigned int j;
-   for (j=n; j<m;j++)
-     {
-       newstring.s_data[j]=rhs[j-n];
-     }
-   newstring.s_data[m]='\0';
-   return newstring;
+
+  unsigned int i=0;
+  while(rhs[i]!='\0')
+ {
+ i++;
+ }
+ char* data = new char[i+lhs.s_length];
+ unsigned int j;
+ for (j=0; j<lhs.s_length;j++)
+ {
+
+ data [j]=lhs.s_data[j];
+ }
+
+ for (j=lhs.s_length; j<(i+lhs.s_length);j++)
+ {
+ data [j]=rhs[j-lhs.s_length];
+ }
+ data[i+lhs.s_length]='\0';
+ String string_ret(data);
+
+ delete []data;
+printf("%s\n",string_ret.c_str() );
+ return string_ret;
+
+
  }
 
 
@@ -280,9 +289,25 @@ else
 //being the concatenation of the characters at the right of the operator
 inline String operator+ (const char* lhs,const String& rhs)
 {
-  String newstring(lhs);
-  newstring=newstring+rhs;
-  return newstring;
+   unsigned int i=0;
+  while(lhs[i]!='\0')
+ {
+ i++;
+ }
+ char* data = new char[i+rhs.s_length];
+ unsigned int j;
+ for (j=0; j<rhs.s_length;j++)
+ {
+ data [j]=lhs[j];
+ }
+ for (j=rhs.s_length; j<(i+rhs.s_length);j++)
+ {
+ data [j]=rhs.s_data[j-rhs.s_length];
+ }
+ data[i+rhs.s_length]='\0';
+ String string_ret(data);
+ delete []data;
+ return string_ret;
   
 }
 

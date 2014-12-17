@@ -75,7 +75,8 @@ test='c'+test2;
 printf("New string : %s \n", test.c_str());
 
 //Testing the operator +(char *)
-test="newchar*"+test2;
+test = "newchar*"+test3;
+printf("On teste\n");
 printf("New string : %s \n", test.c_str());
 
 //Testing the operator +(char *)
@@ -84,12 +85,12 @@ printf("New string : %s \n", test.c_str());
 
 
 
-
+/*
 printf("\nTesting the method clear\n");
 test.clear();
 //verification that the string is clear
 Test_class_string(test);
-
+*/
 
   return 0;
 }
