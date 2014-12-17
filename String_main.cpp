@@ -35,8 +35,11 @@ void Test_class_string(String S);
 
 int main(int argc, char* argv[])
 {
-  String test("");
+  String test("koukou komen sa va :)");
 
+Test_class_string(test);
+printf("Testing the method clear\n");
+test.clear();
 Test_class_string(test);
   return 0;
 }
@@ -55,7 +58,7 @@ void Test_class_string(String S)
   printf("capacity of the string :%d \n", S.capacity());
   printf("does the string is empty ? (y=1, n=0) :%d \n", S.empty());
   printf("character at the position 5 in the string :%c \n", S.at(5));
-  printf("character at the position 5 in the string :%c \n", S.at(5));
+  printf("character at the position 7 in the string using operator []:%c \n", S[10]);
  
 }
 
