@@ -76,6 +76,8 @@ class String
    inline String& operator=( const char* s);
    inline String operator+( const String& rhs);
    inline String& operator= (const String& str);
+   friend inline String operator+ (const String& lhs, char rhs);
+   friend inline String operator+ (char lhs, const String& rhs);
 
   // =======================================================================
   //                              Public Methods
@@ -349,6 +351,37 @@ inline String& String::operator= (const String& str)
 }
 
 
+// This operator have two declaration, the first is used when the String is at 
+// the left of the operator. It return a concatenate String from anothe String
+// and a char
+  inline String operator+ (const String& lhs, char rhs)
+  {
+    int i;
+    char * cstr= new char [lhs.s_length+2];
+    for(i=0;i<lhs.s_length;i++)
+      {
+	cstr[i]=lhs.s_data[i];
+      }
+    cstr[i]=rhs;
+    cstr[i+1]='\0';
+    String result(cstr);
+    return result;
+  }
+
+// This one is used when the String is at the right of the operator
+inline String operator+ (char lhs, const String& rhs)
+{
+  int i;
+  char * cstr= new char [rhs.s_length+2];
+  for(i=1;i<rhs.s_length+1;i++)
+    {
+      cstr[i]=rhs.s_data[i-1];
+    }
+  cstr[0]=lhs;
+  cstr[i]='\0';
+  String result(cstr);
+  return result;
+}
 
 // ===========================================================================
 //                          Inline functions' definition

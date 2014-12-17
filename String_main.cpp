@@ -35,12 +35,14 @@ void Test_class_string(String S);
 
 int main(int argc, char* argv[])
 {
-  String test("koukou komen sa va :)");
+
+  String test("Test for the string ");
 
 Test_class_string(test);
 printf("Testing the method clear\n");
 test.clear();
 Test_class_string(test);
+
   return 0;
 }
 
