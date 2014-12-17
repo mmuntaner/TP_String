@@ -266,7 +266,6 @@ else
  unsigned int j;
  for (j=0; j<lhs.s_length;j++)
  {
-
  data [j]=lhs.s_data[j];
  }
 
@@ -278,7 +277,6 @@ else
  String string_ret(data);
 
  delete []data;
-printf("%s\n",string_ret.c_str() );
  return string_ret;
 
 
@@ -296,13 +294,13 @@ inline String operator+ (const char* lhs,const String& rhs)
  }
  char* data = new char[i+rhs.s_length];
  unsigned int j;
- for (j=0; j<rhs.s_length;j++)
+ for (j=0; j<i;j++)
  {
- data [j]=lhs[j];
+ data[j]=lhs[j];
  }
- for (j=rhs.s_length; j<(i+rhs.s_length);j++)
+ for (j=i; j<(i+rhs.s_length);j++)
  {
- data [j]=rhs.s_data[j-rhs.s_length];
+ data[j]=rhs.s_data[j-i];
  }
  data[i+rhs.s_length]='\0';
  String string_ret(data);

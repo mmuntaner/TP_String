@@ -70,13 +70,14 @@ printf("New string : %s \n", test.c_str());
 test=test2+'c';
 printf("New string : %s \n", test.c_str());
 
-//Testing the operator +(char c)
-test='c'+test2;
-printf("New string : %s \n", test.c_str());
+
 
 //Testing the operator +(char *)
-test = "newchar*"+test3;
-printf("On teste\n");
+test= "newchar*"+test3;
+printf("New string : %s \n", test.c_str());
+
+//Testing the operator +(char c)
+test='c'+test2;
 printf("New string : %s \n", test.c_str());
 
 //Testing the operator +(char *)
