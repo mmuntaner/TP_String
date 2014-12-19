@@ -5,13 +5,6 @@
 //****************************************************************************
 
 
- 
- 
-// ===========================================================================
-//                                   Libraries
-// ===========================================================================
-
-
 
 // ===========================================================================
 //                                 Project Files
@@ -29,21 +22,22 @@
 // ===========================================================================
 //                         Definition of static attributes
 // ===========================================================================
+const unsigned int String::MAX_CAPACITY=100;
 
 // ===========================================================================
 //                                  Constructors
 // ===========================================================================
 
-String::String(const char* s)
+String::String (const char* s)
 {
-  // Function that allows to know the length of s.
+  // Function that allows to know the length of s
   int i=0;
   while(s[i]!='\0')
     {
        i++;
     }
 
-  // Function that copies the character sequence pointed by s.
+  // Function that copies the character sequence pointed by s
   s_data = new char[i];
   for (int j=0; j<=i; j++)
     {
@@ -71,7 +65,7 @@ String::String (const String& str)
 // ===========================================================================
 //                                  Destructor
 // ===========================================================================
-String::~String(void)
+String::~String (void)
 {
   delete [] s_data;
 }
@@ -80,13 +74,13 @@ String::~String(void)
 //                                 Public Methods
 // ===========================================================================
 
-// Returns whether the string is empty (i.e. whether its length is 0).
-bool String::empty(void) const
+// Returns whether the string is empty (i.e. whether its length is 0)
+bool String::empty (void) const
 {
   return (s_length==0);
 }
 
-// Returns a reference to the character at position pos in the string.
+// Returns a reference to the character at position pos in the string
 char& String::at (unsigned int pos)
 {
   if (pos<=s_length)
@@ -102,20 +96,10 @@ char& String::at (unsigned int pos)
 }
 
 // Erases the content of the table and set "s_length" to 0
-void String::clear()
+void String::clear ()
 {
   delete [] s_data;
   s_capacity=0;
   s_length=0;
   s_data=NULL;
 }
-
-// ===========================================================================
-//                                Protected Methods
-// ===========================================================================
-
-
-
-// ===========================================================================
-//                               Non inline accessors
-// ===========================================================================

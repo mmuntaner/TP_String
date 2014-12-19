@@ -10,6 +10,7 @@
 #define __STRING_H__
 
 
+
 // ===========================================================================
 //                                  Libraries
 // ===========================================================================
@@ -17,32 +18,21 @@
 #include <cstdlib>
 
 
-// ===========================================================================
-//                                Project Files
-// ===========================================================================
-
-
-
 
 // ===========================================================================
 //                              Class declarations
 // ===========================================================================
-
-
-
+// In the specification some methods use a size_t value but we prefer use
+// an unsigned int to fit our decision of not including cstring 
 
 class String
 {
  public :
-  
-  // =======================================================================
-  //                                 Enums
-  // =======================================================================
-  
+
   // =======================================================================
   //                               Constructors
   // =======================================================================
-  String(const char* s);
+  String (const char* s);
   String (const String& str);
   
   // =======================================================================
@@ -53,26 +43,24 @@ class String
   // =======================================================================
   //                            Accessors: getters
   // =======================================================================
-  // In the specification length return a size_t value but we prefer return
-  // an unsigned int to fit our decision of not including cstring 
-  inline unsigned int length(void) const;
-  inline unsigned int size(void) const;
-  inline const unsigned int max_size(void) const;
-  inline unsigned int capacity(void) const;
-  inline const char* c_str(void) const;  
+  inline unsigned int length (void) const;
+  inline unsigned int size (void) const;
+  inline const unsigned int max_size (void) const;
+  inline unsigned int capacity (void) const;
+  inline const char* c_str (void) const;  
   
   // =======================================================================
   //                            Accessors: setters
   // =======================================================================
-  inline void reserve(unsigned int n=0);
+  inline void reserve (unsigned int n=0);
   inline void resize (unsigned int n);
 
   // =======================================================================
   //                                Operators
   // =======================================================================
-  inline char& operator[](unsigned int pos);
-  inline String& operator=(char c);
-  inline String& operator=( const char* s);
+  inline char& operator[] (unsigned int pos);
+  inline String& operator= (char c);
+  inline String& operator= (const char* s);
   inline String& operator= (const String& str);
 
   friend inline String operator+ (const String& lhs, char rhs);
@@ -85,29 +73,25 @@ class String
   // =======================================================================
   //                              Public Methods
   // =======================================================================
-  bool empty(void) const;
+  bool empty (void) const;
   char& at (unsigned int pos);
-  void clear();  
+  void clear ();  
 
   // =======================================================================
   //                             Public Attributes
   // =======================================================================
   
-  protected :
+ protected :
   
   // =======================================================================
   //                            Forbidden Constructors
   // =======================================================================
   // Avoid use of the default constructor
-  String(void)
+  String (void)
     {
       printf("%s:%d: error: call to forbidden constructor.\n", __FILE__, __LINE__);
       exit(EXIT_FAILURE);
     };
-    
-  // =======================================================================
-  //                              Protected Methods
-  // =======================================================================
   
   // =======================================================================
   //                             Protected Attributes
@@ -120,7 +104,7 @@ class String
   unsigned int s_length, s_capacity;
   
   // "MAX_CAPACITY" is the maximal capacity of a string
-  static const unsigned int MAX_CAPACITY=100;
+  static const unsigned int MAX_CAPACITY;
   
 };
 
@@ -128,34 +112,34 @@ class String
 //                              Getters' definitions
 // ===========================================================================
 //Returns the length of the string, in terms of bytes
-inline unsigned int String::length(void) const
+inline unsigned int String::length (void) const
 {
   return s_length*sizeof(char);
 }
 
 
 // "size()" is exactly the same as "length()"
-inline unsigned int String::size(void) const
+inline unsigned int String::size (void) const
 {
   return length();
 }
 
 // Returns the maximum length the string can reach
-inline const unsigned int String::max_size(void) const
+inline const unsigned int String::max_size (void) const
 {
   return MAX_CAPACITY;
 }
 
 // Capacity : Returns the size of the storage space currently allocated 
 // for the string,expressed in terms of bytes.
-inline unsigned int String::capacity(void) const
+inline unsigned int String::capacity (void) const
 {
   return s_capacity*sizeof(char);
 }
 
 // "c_str" return a pointer on a c string version of s_data 
 // In the main, user have to delete the tab pointed by cstr
-inline const char* String::c_str(void) const
+inline const char* String::c_str (void) const
 {
   unsigned int i;
   char* cstr = new char [1+s_length];
@@ -172,7 +156,7 @@ inline const char* String::c_str(void) const
 // ===========================================================================
 // Requests that the string capacity be adapted to a planned change
 // in size to a length of up to n characters.
-inline void String::reserve(unsigned int n)
+inline void String::reserve (unsigned int n)
 {
   if(n>MAX_CAPACITY)
     {
@@ -186,9 +170,9 @@ inline void String::reserve(unsigned int n)
 	{
 	  news_data[i]=s_data[i];
 	}
-     delete [] s_data;
-     s_data=news_data;
-     s_capacity = n;
+      delete [] s_data;
+      s_data=news_data;
+      s_capacity = n;
     }
 }
 		
@@ -231,7 +215,7 @@ inline void String::resize (unsigned int n)
 //                             Operators' definitions
 // ===========================================================================
 //Returns a reference to the character at position pos in the string.
-inline char & String::operator[]( unsigned int pos )
+inline char & String::operator[] (unsigned int pos)
 {
   //if the position asked is outside the lenght of the string
   if (pos<0 || pos>s_length) 
@@ -247,7 +231,7 @@ inline char & String::operator[]( unsigned int pos )
 
 
 //Assigns a new value ('c') to the string, replacing its current contents.
-inline String& String::operator=(char c)
+inline String& String::operator= (char c)
 {
   s_length=1;
   s_capacity=1;
@@ -259,7 +243,7 @@ inline String& String::operator=(char c)
 
 
 //Assigns a new value ("foo") to the string, replacing its current contents.
-String& String::operator=( const char* s )
+String& String::operator= (const char* s)
 {
   int j=0;
   while(s[j]!='\0')
@@ -350,7 +334,7 @@ inline String operator+ (char lhs, const String& rhs)
 
 //Returns a newly constructed string object with its value 
 //being the concatenation of the characters at the left of the operator
-inline String operator+ (const String& lhs,const char* rhs )
+inline String operator+ (const String& lhs,const char* rhs)
 {
   unsigned int i=0;
   while(rhs[i]!='\0')
@@ -417,16 +401,6 @@ inline String operator+ (const String& lhs, const String& rhs)
   newstring.s_data[m]='\0';
   return newstring; 
 }
-
-
-
-
-
-
-
-
-
-
 
 
 
