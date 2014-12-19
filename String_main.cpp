@@ -93,7 +93,11 @@ int main(int argc, char* argv[])
 // ===========================================================================
 void Test_class_string (String S)
 {
-  printf("String to test : %s \n", S.c_str());
+  // "cstr" get the value returned by c_str() to avoid memory leak
+  // See String.h for more information
+  const char * cstr=S.c_str();
+  printf("String to test : %s \n", cstr);
+  delete [] cstr;
   printf("Lenght of the string : %d \n", S.length());
   printf("Size of the string : %d \n", S.size());
   printf("Max_capacity of the string : %d \n", S.max_size());
