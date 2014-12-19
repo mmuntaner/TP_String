@@ -225,7 +225,7 @@ inline char & String::operator[] (unsigned int pos)
     }
   else
     { 
-      return this->s_data[pos-1];
+      return this->s_data[pos];
     }
 }
 
